@@ -12,7 +12,7 @@ class Receipt:
         import_tax = ImportTax(0.05)
 
         for item in self.items:
-            item_tax = sales_tax.calculate(item) + import_tax.calculate(item)
+            item_tax = sales_tax.calculate_tax(item) + import_tax.calculate_tax(item)
             item.total_price_after_tax = (item.shelf_price + item_tax) * item.quantity
 
             self.total_tax_amount += item_tax * item.quantity

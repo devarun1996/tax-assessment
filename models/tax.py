@@ -10,19 +10,19 @@ class Tax:
     def __init__(self, rate):
         self.rate = rate
 
-    def calculate(self, item):
+    def calculate_tax(self, item):
         raise NotImplementedError("Subclasses should implement this!")
 
 
 class SalesTax(Tax):
-    def calculate(self, item):
+    def calculate_tax(self, item):
         if item.is_exempt:
             return 0.0
         return round_up_tax(item.shelf_price * self.rate)
 
 
 class ImportTax(Tax):
-    def calculate(self, item):
+    def calculate_tax(self, item):
         if item.is_imported:
             return round_up_tax(item.shelf_price * self.rate)
         return 0.0
